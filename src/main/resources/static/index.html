@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据可视化demo</title>
+    <link href="styles/common.css" rel="stylesheet">
+    <script src="scripts/Plugin/jquery-3.3.1.min.js"></script>
+    <script src="scripts/Plugin/echarts.min.js"></script>
+    <script src="scripts/Plugin/bmap.min.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=AgasQmKK2z6YZjy4w5dFPY93c6uPw7RI"></script>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/Plugin/laydate/laydate.js"></script>
+</head>
+<body>
+<!--顶部-->
+<header class="header left">
+    <div class="left nav">
+        <ul>
+            <li class="nav_active"><i class="nav_1"></i><a href="index.html">采集概况</a> </li>
+            <li><i class="nav_2"></i><a href="quota.html">指标分析</a> </li>
+            <li><i class="nav_3"></i><a href="trend.html">趋势预测</a> </li>
+            <li><i class="nav_4"></i><a href="chronic.html">数据库列表</a> </li>
+        </ul>
+    </div>
+    <div class="header_center left" style="position:relative">
+
+        <h2><strong>杭州萧山机场L滑工程智能化监测平台</strong></h2>
+
+    </div>
+    <div class="right nav text_right">
+        <ul>
+
+        </ul>
+    </div>
+
+</header>
+<!--内容部分-->
+<div class="con left">
+    <!--数据总概-->
+    <div class="con_div">
+        <div class="con_div_text left">
+            <div class="con_div_text01 left">
+                <img src="images/info_1.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>总采集数据量(G)</p>
+                    <p id="t0">35</p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img src="images/info_2.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>当月采集数据量(G)</p>
+                    <p id="t1">2.34</p>
+                </div>
+            </div>
+        </div>
+        <div class="con_div_text left">
+            <div class="con_div_text01 left">
+                <img src="images/info_3.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>总数据量</p>
+                    <p id="t2" class="sky">235400</p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img src="images/info_4.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>当月数据量</p>
+                    <p id="t3" class="sky">26155</p>
+                </div>
+            </div>
+        </div>
+        <div class="con_div_text left">
+
+            <div class="con_div_text01 left">
+                <img src="images/info_5.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>总有效数据</p>
+                    <p id="t4"  class="org">196600</p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img src="images/info_6.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>当月有效数据</p>
+                    <p id="t5" class="org">20666</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--统计分析图-->
+    <div class="div_any">
+        <div class="left div_any01">
+            <div class="div_any_child">
+                <div class="div_any_title"><img src="images/title_1.png">各分区沉降采集数据量</div>
+                <p id="pieChart1" class="p_chart"></p>
+            </div>
+            <div class="div_any_child">
+                <div class="div_any_title"><img src="images/title_2.png">各分区测斜采集数据量</div>
+                <p id="histogramChart" class="p_chart"></p>
+            </div>
+        </div>
+        <div class="div_any02 left ">
+            <div class="div_any_child div_height">
+                <div class="div_any_title any_title_width"><img src="images/title_0.png">萧山机场地图 </div>
+                <div id="mapChart" style="width:97.5%;height:95%;display: inline-block;padding-left: 1.25%;padding-top:2.2%"></div>
+            </div>
+        </div>
+        <div class="right div_any01">
+            <div class="div_any_child">
+                <div class="div_any_title"><img src="images/title_3.png">数据采集条数(当日)</div>
+                <p id="lineChart" class="p_chart"></p>
+            </div>
+            <div class="div_any_child">
+                <div class="div_any_title"><img src="images/title_4.png">有效数据条数(当日)</div>
+                <p id="lineChart2" class="p_chart"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="el-dialog" class="">
+        <div class="xc_layer"></div>
+        <div class="popBox" id="printView">
+            <div class="ttBox"><span class="tt" id="reportTitle">北一区</span><img src="images/close.png" style="width: 30px;float: right;cursor: pointer;" title="关闭弹窗" class="close"/></div>
+            <div class="txtBox" id="el-dialog_body">
+                <div style="height:100%;width: 98%;margin-left: 1%;">
+                    <div class="left div_any01" style="width: 64%;">
+                        <div class="div_any_child">
+                            <div class="div_any_title">
+
+                                <!-- 修改 -->
+                                <div class="container">
+                                    <div class="form-group">
+                                        <label for="datepicker">选择日期:</label>
+                                        <input type="date" id="datepicker" />
+                                        <input type="date" id="datepicker1" />
+                                        <button type="button" onclick="printSelectedDate()">确定</button>
+                                    </div>
+                                </div>
+                                <!-- 修改 -->
+
+                                <div type="text" class="demo-input" id="date1" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_4.png">沉降数据</div>
+                            <p id="lineChart3" class="p_chart"></p>
+                        </div>
+                        <div class="div_any_child">
+                            <div class="div_any_title"><div type="text" class="demo-input" id="date2" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_7.png">预测数据</div>
+                            <p id="lineChart4" class="p_chart"></p>
+                        </div>
+                    </div>
+                    <div class="left div_any01"  style="width: 32%;">
+                        <div class="div_any_child">
+                            <div class="div_any_title"><div type="text" class="demo-input" id="date3" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_18.png">监督学习分布</div>
+                            <p id="pieChart2" class="p_chart"></p>
+                        </div>
+                        <div class="div_any_child">
+                            <div class="div_any_title"><div type="text" class="demo-input" id="date4" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_20.png">无监督学习分布</div>
+                            <p id="pieChart3" class="p_chart"></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    function printSelectedDate() {
+        var date1 = document.getElementById('datepicker').value;
+        var date2 = document.getElementById('datepicker1').value;
+        var stringarray = []
+        stringarray.push(date1)
+        stringarray.push(date2)
+        return stringarray}
+    function generateArray(n) {
+        var array = [];
+        for (var i = 1; i <= n; i++) {
+            array.push(i);
+        }
+        return array;
+    }
+    function divideArrayBy100(arr) {
+        var dividedArr = arr.map(function(num) {
+            return num / 100;
+        });
+        return dividedArr;
+    }
+
+    function updateChart() {
+        let data =0;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+                var response = JSON.parse(this.responseText);
+                console.log(this.responseText)
+                var x=generateArray(response.length)
+                console.log(response)
+                response=divideArrayBy100(response);
+                console.log(x)
+                var lineChart3 = echarts.init(document.getElementById('lineChart3'));//点击点位后的监测值
+                var DA=updateChart()
+
+                lineChart3.setOption({
+
+                    color:["#87cefa","#ff7f50",],
+                    legend: {
+                        y : 'top',
+                        x : 'center',
+                        textStyle : {
+                            color : '#ffffff',
+
+                        },
+                        data : ['门诊人次','住院人次'],
+                    },
+                    calculable : false,
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a}<br/>{b}<br/>{c}毫米"
+                    },
+                    dataZoom: {
+                        show: true,
+                        realtime : true,
+                        start: 0,
+                        end: 18,
+                        height: 20,
+                        backgroundColor: '#f8f8f8',
+                        dataBackgroundColor: '#e4e4e4',
+                        fillerColor: '#87cefa',
+                        handleColor: '#87cefa',
+                    },
+                    yAxis: [
+                        {
+                            type: 'value',
+
+                            interval: 1,
+                            axisLine : {onZero: false},
+                            axisLine:{
+                                lineStyle:{
+                                    color: '#034c6a'
+                                },
+                            },
+
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#fff'
+                                },
+                                formatter: function (value) {
+                                    return value + "毫米"
+                                },
+                            },
+                            splitLine:{
+                                lineStyle:{
+                                    width:0,
+                                    type:'solid'
+                                }
+                            }
+                        }
+                    ],
+                    xAxis: [
+                        {
+                            type: 'category',
+                            data : x,
+                            boundaryGap : false,
+                            axisLine:{
+                                lineStyle:{
+                                    color: '#034c6a'
+                                },
+                            },
+                            splitLine: {
+                                "show": false
+                            },
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#fff'
+                                },
+                                formatter: function (value) {
+                                    return value + ""
+                                },
+                            },
+                            splitLine:{
+                                lineStyle:{
+                                    width:0,
+                                    type:'solid'
+                                }
+                            },
+                        }
+                    ],
+                    grid:{
+                        left: '5%',
+                        right: '5%',
+                        bottom: '20%',
+                        containLabel: true
+                    },
+                    series : [
+                        {
+                            name:'沉降值',
+                            type:'line',
+                            smooth:true,
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        shadowColor : 'rgba(0,0,0,0.4)'
+                                    }
+                                }
+                            },
+                            data:response
+                        },
+                        {
+                            name:'沉降值',
+                            type:'line',
+                            smooth:true,
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        shadowColor : 'rgba(0,0,0,0.4)'
+                                    }
+                                }
+                            },
+                            data:response
+                        },
+                        {
+                            name:'沉降值',
+                            type:'line',
+                            smooth:true,
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        shadowColor : 'rgba(0,0,0,0.4)'
+                                    }
+                                }
+                            },
+                            data:response
+                        },
+                    ]
+                });
+            }
+
+
+        }
+        var DATA=printSelectedDate();
+        et=DATA[0] ;bt=DATA[1]
+        var url = "http://localhost:8080/api/data1?date1=" + et + "&date2=" + bt; // 请求的url
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+    setInterval(function() {
+        var xx=printSelectedDate();
+        var yy=updateChart();
+        console.log(yy);
+        console.log(xx[0]);
+        console.log(xx[1])
+
+    }, 20000);
+</script>
+</body>
+</html>
+

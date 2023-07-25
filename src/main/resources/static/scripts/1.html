@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>shiyan</title>
+    <script src="scripts/Plugin/jquery-3.3.1.min.js"></script>
+    <script src="scripts/Plugin/echarts.min.js"></script>
+</head>
+<body>
+<div>
+    <label for="begintime">请选择开始日期：</label>
+    <input type="date" id="begintime" name="begintime" value="2022-08-31">
+    <br>
+    <label for="endtime">请选择结束日期：</label>
+    <input type="date" id="endtime" name="endtime" value="2022-08-31">
+    <button onclick="getTime()">确定</button>
+</div>
+<div id="chart" style="width: 800px;height:500px;"></div>
+<script>
+    let canvas = document.querySelector('canvas');
+    let bt= '2022-08-31';
+    let et= '2022-08-31';
+    function getTime(){
+        // 获取开始日期输入框元素
+        var BT = document.getElementById("begintime");
+        // 获取用户选择的开始日期
+        bt = BT.value;
+        // 获取结束日期输入框元素
+        var ET = document.getElementById("endtime");
+        // 获取用户选择的结束日期
+        et = ET.value;
+    }
+    var chart = echarts.init(document.getElementById('chart'));
+
+    // 获取数据并更新图表
+    function updateChart() {
+        let data =0;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+                var response = JSON.parse(this.responseText);
+                const randomNumber = Math.floor(Math.random() * 10) + 300;
+                data=response.slice(1, randomNumber);;
+                console.log(data)
+                const arr = Array.from({length: data.length}, (v, i) => i + 1);
+                console.log(Array.isArray(data));  // 绘制折线图
+                chart.setOption({
+                    xAxis: {
+                        type: 'category',
+                        data: arr
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+                            name: '数值',
+                            type: 'line',
+                            data: data
+                        }
+                    ],
+                    dataZoom: [
+                        {
+                            show: true,
+                            type: 'slider',
+                            xAxisIndex: [0],
+                            start: 0,
+                            end: 20, // 默认情况下，viewPort 的大小为全部数据区域，这里我们将其缩小为 1/5。
+                            zoomLock: true, // 是否锁定视窗区域，即将视窗区域固定在初始大小上
+                            orient: 'horizontal',
+                            handleSize: 10 // 滑块大小
+                        },
+                        {
+                            type: 'inside',
+                            xAxisIndex: [0],
+                            start: 0,
+                            end: 20, // 设置初始的 viewPort 大小，与上面的保持一致
+                            zoomOnMouseWheel: true // 是否开启鼠标滚轮缩放
+                        }
+                    ],
+                    animation: false // 将动画效果关闭，以便更好的展现滑动效果
+                });
+            }
+        };
+        var url = "http://localhost:8080/api/data1?date1=" + et + "&date2=" + bt; // 请求的url
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+    }
+
+    // 初始更新图表
+    updateChart();
+
+    // 每5秒更新一次图表
+    setInterval(function() {
+        updateChart();
+    }, 5000);
+
+
+</script>
+</body>
+</html>
