@@ -2,7 +2,7 @@ var symptomName = last_month_day();
 
 $(function(){
 
-
+// SendData();
   init();
   init2();
     $("#el-dialog").addClass("hide");
@@ -35,6 +35,9 @@ $(function(){
  });
 
 })
+
+
+
 function init(){
   //地图
   var mapChart = echarts.init(document.getElementById('mapChart'));
@@ -69,6 +72,7 @@ function init(){
   mapChart.on('click', function (params) {
       $("#el-dialog").removeClass('hide');
       $("#reportTitle").html(params.value[2]);
+      console.log(params);
   });
 
   var bmap = mapChart.getModel().getComponent('bmap').getBMap()
@@ -510,18 +514,11 @@ function init(){
 
 function init2(){
   var lineChart3 = echarts.init(document.getElementById('lineChart3'));//点击点位后的监测值
-  lineChart3.setOption({
+  var lineChart3_Option = {
 
     color:["#87cefa","#ff7f50",],
-    legend: {
-        y : 'top',
-        x : 'center',
-        textStyle : {
-            color : '#ffffff',
 
-        },
-         data : ['门诊人次','住院人次'],
-    },
+
     calculable : false,
     tooltip : {
         trigger: 'item',
@@ -535,13 +532,13 @@ function init2(){
          height: 20,
          backgroundColor: '#f8f8f8',
          dataBackgroundColor: '#e4e4e4',
-         fillerColor: '#87cefa',
-         handleColor: '#87cefa',
+         fillerColor: 'rgba(38,98,135,0.77)',
+         handleColor: '#acddfd',
      },
     yAxis: [
           {
               type: 'value',
-              interval: 1,
+              interval: 2,
               axisLine : {onZero: false},
               axisLine:{
                   lineStyle:{
@@ -641,11 +638,19 @@ function init2(){
             data:[14, 13.8, 13.8, 13.8, 13.7, 13.7,13.6, 13.6, 13.6, 13.5, 13.5, 13.45,13.43,13.42, 13.41, 13.4, 13.38, 13.37,13.36, 13.35, 13.34, 13.33, 13.32, 13.31,13.29, 13.27,13.27, 13.27,13.26, 13.25]
         },
     ]
-  });
+  };
+   // $.ajax({
+   //      url:'data/data/result',
+   //      success:function (data){
+   //          lineChart3_Option.xAxis.data = data.date_1;
+   //          lineChart3_Option.series[0].data = data.value_1;
+   //          lineChart3.setOption(lineChart3_Option);
+   //      }
+   //  });
 
-
+  lineChart3.setOption(lineChart3_Option);
   var lineChart4 = echarts.init(document.getElementById('lineChart4'));//点击点位后的预测值
-  lineChart4.setOption({
+  var lineChart4_Option = {
 
     color:["#87cefa","#ff7f50",],
     calculable : false,
@@ -661,7 +666,7 @@ function init2(){
          height: 20,
          backgroundColor: '#f8f8f8',
          dataBackgroundColor: '#e4e4e4',
-         fillerColor: '#87cefa',
+         fillerColor: 'rgba(38,98,135,0.77)',
          handleColor: '#87cefa',
      },
     yAxis: [
@@ -740,8 +745,17 @@ function init2(){
             data:[5, 4.8, 4.8, 4.8, 4.7, 4.7,4.6, 4.6, 4.6, 4.5, 4.5, 4.45,4.43,4.42, 4.41, 4.4, 4.38, 4.37,4.36, 4.35, 4.34, 4.33, 4.32, 4.31,4.29, 4.27,4.27, 4.27,4.26, 4.25].reverse()
         },
     ]
-  });
+  };
 
+   // $.ajax({
+   //      url:'data/data/result',
+   //      success:function (data){
+   //          lineChart4_Option.xAxis.data = data.date_2;
+   //          lineChart4_Option.series[0].data = data.value_2;
+   //          lineChart4.setOption(lineChart4_Option);
+   //      }
+   //  });
+    lineChart4.setOption(lineChart4_Option);
   //点击点位后的监督学习组成
   var pieChart2 = echarts.init(document.getElementById('pieChart2'));
   pieChart2.setOption({
@@ -958,3 +972,24 @@ function async_map_data() {
     });//end $.getJSON
 
 }
+
+// function SendData(){
+//     $("#btn1").click(function (){
+//         $.ajax({
+//             url:'data/date',  //后端需要设置对应路由
+//             type:'post',
+//             data:{
+//                 startdate: $("#datepicker").val()
+//                 enddate: $("datepicker1").val()
+//             },
+//             dataType:'JSON',
+//             success:function (res){
+//                 console.log(res);
+//             }
+//         })
+//         }
+//
+//     )
+// }
+
+

@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <title>数据可视化demo</title>
     <link href="styles/common.css" rel="stylesheet">
+    <link rel="stylesheet" href="scripts/Plugin/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="scripts/Plugin/bootstrap-3.4.1/css/bootstrap.min.css">
+    <style>
+        .icon{
+            color: white;
+            margin-left: -26px;
+        }
+    </style>
     <script src="scripts/Plugin/jquery-3.3.1.min.js"></script>
     <script src="scripts/Plugin/echarts.min.js"></script>
     <script src="scripts/Plugin/bmap.min.js"></script>
@@ -17,7 +25,7 @@
 <header class="header left">
     <div class="left nav">
         <ul>
-            <li class="nav_active"><i class="nav_1"></i><a href="index.html">采集概况</a> </li>
+            <li class="nav_active"><i class="nav_1"></i><i class="fa fa-podcast icon" aria-hidden="true"></i><a href="index.html">采集概况</a> </li>
             <li><i class="nav_2"></i><a href="quota.html">指标分析</a> </li>
             <li><i class="nav_3"></i><a href="trend.html">趋势预测</a> </li>
             <li><i class="nav_4"></i><a href="chronic.html">数据库列表</a> </li>
@@ -122,7 +130,14 @@
     <div id="el-dialog" class="">
         <div class="xc_layer"></div>
         <div class="popBox" id="printView">
-            <div class="ttBox"><span class="tt" id="reportTitle">北一区</span><img src="images/close.png" style="width: 30px;float: right;cursor: pointer;" title="关闭弹窗" class="close"/></div>
+            <div class="ttBox" style="height: 60px"><span class="tt" id="reportTitle">北一区</span><img src="images/close.png" style="width: 30px;float: right;cursor: pointer;" title="关闭弹窗" class="close"/>
+            <div>
+                <label for="datepicker">选择日期:</label>
+                                        <input type="date" id="datepicker" style="color: grey;font-size: 10px;line-height: 10px;text-align: center" />
+                                        <input type="date" id="datepicker1" style="color: grey;font-size: 10px;line-height: 10px;text-align: center"/>
+                                        <input id="btn1" type="button" value="确定" class="btn btn-default" style="height: 20px;width: 40px;font-size: 13px;padding: 0;font-family: 黑体">
+            </div>
+            </div>
             <div class="txtBox" id="el-dialog_body">
                 <div style="height:100%;width: 98%;margin-left: 1%;">
                     <div class="left div_any01" style="width: 64%;">
@@ -131,16 +146,13 @@
 
                                 <!-- 修改 -->
                                 <div class="container">
-                                    <div class="form-group">
-                                        <label for="datepicker">选择日期:</label>
-                                        <input type="date" id="datepicker" />
-                                        <input type="date" id="datepicker1" />
-                                        <button type="button" onclick="printSelectedDate()">确定</button>
+                                    <div class="form-group" style="margin-left:-600px;margin-top: -20px">
+
                                     </div>
                                 </div>
                                 <!-- 修改 -->
 
-                                <div type="text" class="demo-input" id="date1" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_4.png">沉降数据</div>
+                                <div type="text" class="demo-input" id="date1" style="display: inline-block;cursor: pointer;margin-right: 16px"></div><img src="images/title_4.png">沉降数据</div>
                             <p id="lineChart3" class="p_chart"></p>
                         </div>
                         <div class="div_any_child">
