@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>数据可视化demo</title>
     <link href="styles/common.css" rel="stylesheet">
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-table.css" rel="stylesheet">
+    <link href="styles/pagination.css" rel="stylesheet">
+    <style>
+        .icon {
+            height: 18px;
+            margin-right: 5px;
+            margin-top: -3px;
+        }
+    </style>
     <script src="scripts/Plugin/jquery-3.3.1.min.js"></script>
     <script src="scripts/Plugin/echarts.min.js"></script>
     <script src="scripts/common.js"></script>
@@ -12,16 +22,17 @@
 <body>
 <!--顶部-->
 <header class="header left">
-  <div class="left nav">
-      <ul>
-          <li><i class="nav_1"></i><a href="index.html">采集概况</a> </li>
-          <li><i class="nav_2"></i><a href="quota.html">指标分析</a> </li>
-          <li class="nav_active"><i class="nav_3"></i><a href="trend.html">趋势预测</a> </li>
-          <li><i class="nav_4"></i><a href="chronic.html">数据库列表</a> </li>
-          </ul>
-  </div>
-    <div class="header_center left" style="position:relative">
-  
+    <div class="left nav">
+        <ul>
+            <li><img src="images/nav_1.png" class="icon"><a href="index.html">采集概况</a></li>
+            <li><img src="images/nav_2.png" class="icon"><a href="quota.html">指标分析</a></li>
+            <li class="nav_active"><img src="images/nav_3.png" class="icon"><a href="trend.html">趋势预测</a></li>
+            <li><img src="images/title_1.png" class="icon" style="height: 16px;margin-top: 0"><a href="chronic.html">数据库列表</a>
+            </li>
+        </ul>
+    </div>
+    <div class="header_center left" style="position:relative;margin-top: 10px">
+
         <h2><strong>杭州萧山机场L滑工程智能化监测平台</strong></h2>
 
     </div>
@@ -39,80 +50,121 @@
         <div class="left div_any01" style="width:100%;">
             <div class="div_any_child" style="width:98%;position:relative;height: 420px;">
                 <div class="div_any_title"><img src="images/title_13.png">主要机器学习算法</div>
-                <div id="histogramChart1"  style="width: 45%;display: inline-block;height: 400px;margin-top: 15px;"></div>
-                <div id="lineChart1"  style="width: 52%;height: 66%;display: inline-block;"></div>
+                <div id="histogramChart1"
+                     style="width: 45%;display: inline-block;height: 400px;margin-top: 15px;"></div>
+                <div id="lineChart1" style="width: 52%;height: 66%;display: inline-block;"></div>
                 <div style="width: 50%;height: 20%;display: inline-block;color:red;position: absolute;right: 2%;top: 8%;">
-                  <div style="display: inline-block;width:33%;text-align:center;">
-                    <div style="color:#fff;font-size: 18px;line-height: 32px;">预测数据量</div>
-                    <div style="color:#87cefa;font-size: 30px;line-height: 42px;">235400</div>
-                  </div><div style="display: inline-block;width:33%;text-align:center;">
-                    <div style="color:#fff;font-size: 18px;line-height: 32px;">噪音数</div>
-                    <div style="color:red;font-size: 30px;line-height: 42px;">2600</div>
-                  </div><div style="display: inline-block;width:33%;text-align:center;">
-                    <div style="color:#fff;font-size: 18px;line-height: 32px;">同比预测趋势</div>
-                    <div style="color:#ff7f50;font-size: 30px;line-height: 42px;">82.6%</div>
-                  </div>
+                    <div style="display: inline-block;width:33%;text-align:center;">
+                        <div style="color:#fff;font-size: 18px;line-height: 32px;">预测数据量</div>
+                        <div style="color:#87cefa;font-size: 30px;line-height: 42px;">235400</div>
+                    </div>
+                    <div style="display: inline-block;width:33%;text-align:center;">
+                        <div style="color:#fff;font-size: 18px;line-height: 32px;">噪音数</div>
+                        <div style="color:red;font-size: 30px;line-height: 42px;">2600</div>
+                    </div>
+                    <div style="display: inline-block;width:33%;text-align:center;">
+                        <div style="color:#fff;font-size: 18px;line-height: 32px;">同比预测趋势</div>
+                        <div style="color:#ff7f50;font-size: 30px;line-height: 42px;">82.6%</div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="left div_any01" style="width:48%;">
-          <div class="div_any_child" style="height: 420px;">
-              <div class="div_any_title"><img src="images/title_14.png">主要问题</div>
-              <p id="histogramChart2" class="p_chart" style="height: 400px;"></p>
+            <div class="div_any_child" style="height: 420px;">
+                <div class="div_any_title"><img src="images/title_14.png">主要问题</div>
+                <p id="histogramChart2" class="p_chart" style="height: 400px;"></p>
 
-          </div>
+            </div>
         </div>
-          <div class="left div_table_box" style="width: 48%;">
-              <div class="div_any_child" style="height: 420px;">
-                  <div class="div_any_title"><img src="images/title_16.png">预警信息</div>
-                  <div class="table_p">
-                      <table>
-                          <thead><tr>
-                              <th>序号</th>
-                              <th>内容</th>
-                              <th>发布时间</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr><td>1</td><td>9月21日北二区地面沉降传感器采集异常：123次</td><td>2022-11-05</td></tr>
-                          <tr><td>2</td><td>9月20日北二区地面测斜传感器采集异常：57次</td><td>2022-11-03</td></tr>
-                          <tr><td>3</td><td>9月19日北三区分层沉降未采集到数据</td><td>2022-11-01</td></tr>
-                          <tr><td>4</td><td>9月18日北二区分层沉降未采集到数据</td><td>2022-10-29</td></tr>
-                          <tr><td>5</td><td>9月17日北一区分层沉降未采集到数据</td><td>2022-10-27</td></tr>
-                          <tr><td>6</td><td>9月15日南区出现表面沉降下移3mm异常</td><td>2022-10-25</td></tr>
-                          <tr><td>7</td><td>9月14日传感器温度异常：157次</td><td>2022-10-23</td></tr>
-                          <tr><td>8</td><td>9月13日全区采集频率较低</td><td>2022-10-21</td></tr>
-                          <tr><td>9</td><td>9月12日水位波动：157次</td><td>2022-10-20</td></tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </div>
-      </div>
+        <div class="left div_table_box" style="width: 48%;">
+            <div class="div_any_child" style="height: 420px;">
+                <div class="div_any_title"><img src="images/title_16.png">预警信息</div>
+                <div class="table_p">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>内容</th>
+                            <th>发布时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>9月21日北二区地面沉降传感器采集异常：123次</td>
+                            <td>2022-11-05</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>9月20日北二区地面测斜传感器采集异常：57次</td>
+                            <td>2022-11-03</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>9月19日北三区分层沉降未采集到数据</td>
+                            <td>2022-11-01</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>9月18日北二区分层沉降未采集到数据</td>
+                            <td>2022-10-29</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>9月17日北一区分层沉降未采集到数据</td>
+                            <td>2022-10-27</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>9月15日南区出现表面沉降下移3mm异常</td>
+                            <td>2022-10-25</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>9月14日传感器温度异常：157次</td>
+                            <td>2022-10-23</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>9月13日全区采集频率较低</td>
+                            <td>2022-10-21</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>9月12日水位波动：157次</td>
+                            <td>2022-10-20</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+</div>
 <div class="con right" style="width:50%;">
-  <div class="div_any">
-      <div class="left div_any01" style="width:100%;">
-          <div class="div_any_child" style="width:98%;position:relative;height: 420px;">
-              <div class="div_any_title"><img src="images/title_17.png">预测准确率排行</div>
-              <div id="histogramChart3"  style="width: 45%;display: inline-block;height: 400px;margin-top: 15px;"></div>
-              <div id="lineChart2"  style="width: 52%;height: 90%;display: inline-block;"></div>
-          </div>
-      </div>
-      <div class="left div_any01" style="width:48%;">
-        <div class="div_any_child" style="height: 420px;">
-            <div class="div_any_title"><img src="images/title_18.png">监督学习分布</div>
-            <p id="pieChart1" class="p_chart" style="height: 400px;"></p>
+    <div class="div_any">
+        <div class="left div_any01" style="width:100%;">
+            <div class="div_any_child" style="width:98%;position:relative;height: 420px;">
+                <div class="div_any_title"><img src="images/title_17.png">预测准确率排行</div>
+                <div id="histogramChart3"
+                     style="width: 45%;display: inline-block;height: 400px;margin-top: 15px;"></div>
+                <div id="lineChart2" style="width: 52%;height: 90%;display: inline-block;"></div>
+            </div>
         </div>
-      </div>
-      <div class="right div_any01" style="width:48%;">
-          <div class="div_any_child" style="height: 420px;">
-              <div class="div_any_title"><img src="images/title_19.png">无监督学习分布</div>
-              <p id="pieChart2" class="p_chart" style="height: 400px;"></p>
-          </div>
-      </div>
-  </div>
+        <div class="left div_any01" style="width:48%;">
+            <div class="div_any_child" style="height: 420px;">
+                <div class="div_any_title"><img src="images/title_18.png">监督学习分布</div>
+                <p id="pieChart1" class="p_chart" style="height: 400px;"></p>
+            </div>
+        </div>
+        <div class="right div_any01" style="width:48%;">
+            <div class="div_any_child" style="height: 420px;">
+                <div class="div_any_title"><img src="images/title_19.png">无监督学习分布</div>
+                <p id="pieChart2" class="p_chart" style="height: 400px;"></p>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="scripts/Plugin/font-awesome-4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="scripts/Plugin/bootstrap-3.4.1/css/bootstrap.min.css">
     <style>
-        .icon{
-            color: white;
-            margin-left: -26px;
-        }
+    .icon{
+        height: 18px;
+        margin-right: 5px;
+        margin-top: -3px;
+    }
+    .icon_sheet{
+        margin-top: -5px;
+    }
+
     </style>
     <script src="scripts/Plugin/jquery-3.3.1.min.js"></script>
     <script src="scripts/Plugin/echarts.min.js"></script>
@@ -25,13 +30,13 @@
 <header class="header left">
     <div class="left nav">
         <ul>
-            <li class="nav_active"><i class="nav_1"></i><i class="fa fa-podcast icon" aria-hidden="true"></i><a href="index.html">采集概况</a> </li>
-            <li><i class="nav_2"></i><a href="quota.html">指标分析</a> </li>
-            <li><i class="nav_3"></i><a href="trend.html">趋势预测</a> </li>
-            <li><i class="nav_4"></i><a href="chronic.html">数据库列表</a> </li>
+            <li class="nav_active"><img src="images/nav_1.png" class="icon"><a href="index.html">采集概况</a> </li>
+            <li><img src="images/nav_2.png" class="icon"><a href="quota.html">指标分析</a> </li>
+            <li><img src="images/nav_3.png" class="icon"><a href="trend.html">趋势预测</a> </li>
+            <li><img src="images/title_1.png" class="icon" style="height: 16px;margin-top: 0"><a href="chronic.html">数据库列表</a> </li>
         </ul>
     </div>
-    <div class="header_center left" style="position:relative">
+    <div class="header_center left" style="position:relative;margin-top: 10px">
 
         <h2><strong>杭州萧山机场L滑工程智能化监测平台</strong></h2>
 
@@ -101,27 +106,27 @@
     <div class="div_any">
         <div class="left div_any01">
             <div class="div_any_child">
-                <div class="div_any_title"><img src="images/title_1.png">各分区沉降采集数据量</div>
-                <p id="pieChart1" class="p_chart"></p>
+                <div class="div_any_title"><img src="images/title_1.png" class="icon_sheet">各分区沉降采集数据量</div>
+                <p id="pieChart1" class="p_chart""></p>
             </div>
             <div class="div_any_child">
-                <div class="div_any_title"><img src="images/title_2.png">各分区测斜采集数据量</div>
+                <div class="div_any_title"><img src="images/title_2.png" class="icon_sheet">各分区测斜采集数据量</div>
                 <p id="histogramChart" class="p_chart"></p>
             </div>
         </div>
         <div class="div_any02 left ">
             <div class="div_any_child div_height">
-                <div class="div_any_title any_title_width"><img src="images/title_0.png">萧山机场地图 </div>
+                <div class="div_any_title any_title_width"><img src="images/title_0.png" style="margin-top: -7px">萧山机场地图 </div>
                 <div id="mapChart" style="width:97.5%;height:95%;display: inline-block;padding-left: 1.25%;padding-top:2.2%"></div>
             </div>
         </div>
         <div class="right div_any01">
             <div class="div_any_child">
-                <div class="div_any_title"><img src="images/title_3.png">数据采集条数(当日)</div>
+                <div class="div_any_title"><img src="images/title_3.png" class="icon_sheet">数据采集条数(当日)</div>
                 <p id="lineChart" class="p_chart"></p>
             </div>
             <div class="div_any_child">
-                <div class="div_any_title"><img src="images/title_4.png">有效数据条数(当日)</div>
+                <div class="div_any_title"><img src="images/title_4.png" class="icon_sheet">有效数据条数(当日)</div>
                 <p id="lineChart2" class="p_chart"></p>
             </div>
         </div>
