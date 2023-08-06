@@ -105,13 +105,15 @@ function init(){
             type:'pie',
             radius : ['40%', '70%'],
             center : ['50%', '45%'],
+            avoidLabelOverlap: false,
             itemStyle : {
                 normal : {
                     label : {
-                        show : false
+                        show : false,
+                        position:"center",
                     },
                     labelLine : {
-                        show : false
+                        show : true
                     }
                 },
                 emphasis : {
@@ -346,28 +348,28 @@ function init(){
               name:'北一区',
               type:'bar',
               stack: '总量',
-              itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+              itemStyle : { normal: {label : {show: true, position: 'inside'}}},
               data:[320, 302, 301]
           },
           {
               name:'北二区',
               type:'bar',
               stack: '总量',
-              itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+              itemStyle : { normal: {label : {show: true, position: 'inside'}}},
               data:[120, 132, 101]
           },
           {
               name:'北三区',
               type:'bar',
               stack: '总量',
-              itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+              itemStyle : { normal: {label : {show: true, position: 'inside'}}},
               data:[220, 182, 191]
           },
           {
               name:'南区',
               type:'bar',
               stack: '总量',
-              itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+              itemStyle : { normal: {label : {show: true, position: 'inside'}}},
               data:[150, 212, 201]
           }
 
