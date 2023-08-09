@@ -549,6 +549,10 @@ function init(){
               type:'bar',
               barWidth:30,
               data:[17.5,37.9,22.4,10.6],
+              label:{
+                  show: true,
+                  position:'outside'
+              }
           },
       ]
     });
@@ -615,6 +619,10 @@ function init(){
               type:'bar',
               barWidth:30,
               data:[8.6,12.4,10.4,14.2],
+              label:{
+                  show: true,
+                  position:'outside'
+              }
           },
       ]
     });
