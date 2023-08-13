@@ -1,22 +1,23 @@
 package boot;
 
+// 萧山提供的数据接口返回的数据类数据ID
 public class Data {
-    private int dId;
-    private String dTime;
-    private int dPrjId;
-    private String dPrjName;
-    private String dStruct;
-    private String dDtu;
-    private String dGthType;
-    private String dGthNum;
-    private int dSenAddr;
-    private String dInstal;
-    private String dSenNum;
-    private String dSenType;
-    private String dTempr;
-    private String dM1;
-    private String dM2;
-    private String dUnit;
+    private int dId;  // 数据ID
+    private String dTime; //采集时间
+    private int dPrjId; //项目ID
+    private String dPrjName; //项目名称
+    private String dStruct; //项目结构
+    private String dDtu; //Dtu号码
+    private String dGthType; //采集器类型
+    private String dGthNum; //采集器编号
+    private int dSenAddr; //传感器通道
+    private String dInstal; //传感器安装位置
+    private String dSenNum; //传感器编号
+    private String dSenType; //传感器类型
+    private String dTempr; //温度（保留两位小数的字符串）
+    private String dM1; //数据1（保留两位小数的字符串）
+    private String dM2; //数据2（保留两位小数的字符串）
+    private String dUnit; //数据单位
 
     public int getdId() {
         return dId;

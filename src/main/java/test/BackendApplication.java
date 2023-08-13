@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.print.DocFlavor;
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
 @SpringBootApplication
 @Import(CorsConfig.class)
@@ -83,6 +84,7 @@ class DataController {
             String t=sdf.format(System.currentTimeMillis());
             message = BackendApplication.G(date2,t);
         } catch (Exception e) {
+
         }
         System.out.println(date1);
         System.out.println(date2);
