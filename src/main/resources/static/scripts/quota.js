@@ -17,14 +17,16 @@ function init(){
 
      grid: {
          top: '20%',
-         left: '32%'
+         left: '30%',
+         right:'20%'
      },
      xAxis: {
          show: false
      },
      yAxis: [{
          show: true,
-         data:  ['北一区','北二区','北三区','南区',],
+         data:  ['北一区','北二区','北三区','南　区',],
+
          inverse: true,
          axisLine: {
              show: false
@@ -96,8 +98,9 @@ function init(){
          label: {
              normal: {
                  show: true,
-                 position: 'inside',
-                 formatter: '{c}%'
+                 position: 'right',
+                 formatter: '{c}%',
+                 color:"white"
              }
          },
      }, {
@@ -124,14 +127,15 @@ function init(){
 
      grid: {
          top: '20%',
-         left: '32%'
+         left: '30%',
+         right:'20%'
      },
      xAxis: {
          show: false
      },
      yAxis: [{
          show: true,
-         data:  ['北一区','北二区','北三区','南区',],
+         data:  ['北一区','北二区','北三区','南　区',],
          inverse: true,
          axisLine: {
              show: false
@@ -203,8 +207,9 @@ function init(){
          label: {
              normal: {
                  show: true,
-                 position: 'inside',
-                 formatter: '{c}%'
+                 position: 'right',
+                 formatter: '{c}%',
+                 color:'white',
              }
          },
      }, {
@@ -544,6 +549,10 @@ function init(){
               type:'bar',
               barWidth:30,
               data:[17.5,37.9,22.4,10.6],
+              label:{
+                  show: true,
+                  position:'outside'
+              }
           },
       ]
     });
@@ -610,6 +619,10 @@ function init(){
               type:'bar',
               barWidth:30,
               data:[8.6,12.4,10.4,14.2],
+              label:{
+                  show: true,
+                  position:'outside'
+              }
           },
       ]
     });

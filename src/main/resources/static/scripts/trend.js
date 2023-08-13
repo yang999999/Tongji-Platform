@@ -147,7 +147,8 @@ $(function(){
         text: '噪音数据量趋势',
         textStyle:{
            fontSize:16,
-           color:'#ff7f50'
+           color:'#ff7f50',
+            position:"down"
        },
     },
      color:["#ff7f50"],

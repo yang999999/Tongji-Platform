@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <title>数据可视化demo</title>
     <link href="styles/common.css" rel="stylesheet">
+    <link rel="stylesheet" href="scripts/Plugin/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="scripts/Plugin/bootstrap-3.4.1/css/bootstrap.min.css">
+    <style>
+    .icon{
+        height: 18px;
+        margin-right: 5px;
+        margin-top: -3px;
+    }
+    .icon_sheet{
+        margin-top: -5px;
+    }
+
+    </style>
     <script src="scripts/Plugin/jquery-3.3.1.min.js"></script>
     <script src="scripts/Plugin/echarts.min.js"></script>
     <script src="scripts/Plugin/bmap.min.js"></script>
@@ -17,13 +30,13 @@
 <header class="header left">
     <div class="left nav">
         <ul>
-            <li class="nav_active"><i class="nav_1"></i><a href="index.html">采集概况</a> </li>
-            <li><i class="nav_2"></i><a href="quota.html">指标分析</a> </li>
-            <li><i class="nav_3"></i><a href="trend.html">趋势预测</a> </li>
-            <li><i class="nav_4"></i><a href="chronic.html">数据库列表</a> </li>
+            <li class="nav_active"><img src="images/nav_1.png" class="icon"><a href="index.html">采集概况</a> </li>
+            <li><img src="images/nav_2.png" class="icon"><a href="quota.html">指标分析</a> </li>
+            <li><img src="images/nav_3.png" class="icon"><a href="trend.html">趋势预测</a> </li>
+            <li><img src="images/title_1.png" class="icon" style="height: 16px;margin-top: 0"><a href="chronic.html">数据库列表</a> </li>
         </ul>
     </div>
-    <div class="header_center left" style="position:relative">
+    <div class="header_center left" style="position:relative;margin-top: 10px">
 
         <h2><strong>杭州萧山机场L滑工程智能化监测平台</strong></h2>
 
@@ -93,27 +106,27 @@
     <div class="div_any">
         <div class="left div_any01">
             <div class="div_any_child">
-                <div class="div_any_title"><img src="images/title_1.png">各分区沉降采集数据量</div>
+                <div class="div_any_title"><img src="images/title_1.png" class="icon_sheet">各分区沉降采集数据量</div>
                 <p id="pieChart1" class="p_chart"></p>
             </div>
             <div class="div_any_child">
-                <div class="div_any_title"><img src="images/title_2.png">各分区测斜采集数据量</div>
+                <div class="div_any_title"><img src="images/title_2.png" class="icon_sheet">各分区测斜采集数据量</div>
                 <p id="histogramChart" class="p_chart"></p>
             </div>
         </div>
         <div class="div_any02 left ">
             <div class="div_any_child div_height">
-                <div class="div_any_title any_title_width"><img src="images/title_0.png">萧山机场地图 </div>
+                <div class="div_any_title any_title_width"><img src="images/title_0.png" style="margin-top: -7px">萧山机场地图 </div>
                 <div id="mapChart" style="width:97.5%;height:95%;display: inline-block;padding-left: 1.25%;padding-top:2.2%"></div>
             </div>
         </div>
         <div class="right div_any01">
             <div class="div_any_child">
-                <div class="div_any_title"><img src="images/title_3.png">数据采集条数(当日)</div>
+                <div class="div_any_title"><img src="images/title_3.png" class="icon_sheet">数据采集条数(当日)</div>
                 <p id="lineChart" class="p_chart"></p>
             </div>
             <div class="div_any_child">
-                <div class="div_any_title"><img src="images/title_4.png">有效数据条数(当日)</div>
+                <div class="div_any_title"><img src="images/title_4.png" class="icon_sheet">有效数据条数(当日)</div>
                 <p id="lineChart2" class="p_chart"></p>
             </div>
         </div>
@@ -122,7 +135,14 @@
     <div id="el-dialog" class="">
         <div class="xc_layer"></div>
         <div class="popBox" id="printView">
-            <div class="ttBox"><span class="tt" id="reportTitle">北一区</span><img src="images/close.png" style="width: 30px;float: right;cursor: pointer;" title="关闭弹窗" class="close"/></div>
+            <div class="ttBox" style="height: 60px"><span class="tt" id="reportTitle">北一区</span><img src="images/close.png" style="width: 30px;float: right;cursor: pointer;" title="关闭弹窗" class="close"/>
+            <div>
+                <label for="datepicker">选择日期:</label>
+                                        <input type="date" id="datepicker" style="color: grey;font-size: 10px;line-height: 10px;text-align: center" />
+                                        <input type="date" id="datepicker1" style="color: grey;font-size: 10px;line-height: 10px;text-align: center"/>
+                                        <input id="btn1" type="button" value="确定" class="btn btn-default" style="height: 20px;width: 40px;font-size: 13px;padding: 0;font-family: 黑体;background: #034c6a;color: white;border-color: #0982b4">
+            </div>
+            </div>
             <div class="txtBox" id="el-dialog_body">
                 <div style="height:100%;width: 98%;margin-left: 1%;">
                     <div class="left div_any01" style="width: 64%;">
@@ -131,30 +151,27 @@
 
                                 <!-- 修改 -->
                                 <div class="container">
-                                    <div class="form-group">
-                                        <label for="datepicker">选择日期:</label>
-                                        <input type="date" id="datepicker" />
-                                        <input type="date" id="datepicker1" />
-                                        <button type="button" onclick="printSelectedDate()">确定</button>
+                                    <div class="form-group" style="margin-left:-600px;margin-top: -20px">
+
                                     </div>
                                 </div>
                                 <!-- 修改 -->
 
-                                <div type="text" class="demo-input" id="date1" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_4.png">沉降数据</div>
+                                <div type="text" class="demo-input" id="date1" style="display: inline-block;cursor: pointer;margin-right: 16px"></div><img src="images/title_4.png" class="icon_sheet">沉降数据</div>
                             <p id="lineChart3" class="p_chart"></p>
                         </div>
                         <div class="div_any_child">
-                            <div class="div_any_title"><div type="text" class="demo-input" id="date2" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_7.png">预测数据</div>
+                            <div class="div_any_title"><div type="text" class="demo-input" id="date2" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_7.png" class="icon_sheet">预测数据</div>
                             <p id="lineChart4" class="p_chart"></p>
                         </div>
                     </div>
                     <div class="left div_any01"  style="width: 32%;">
                         <div class="div_any_child">
-                            <div class="div_any_title"><div type="text" class="demo-input" id="date3" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_18.png">监督学习分布</div>
+                            <div class="div_any_title"><div type="text" class="demo-input" id="date3" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_18.png" class="icon_sheet">监督学习分布</div>
                             <p id="pieChart2" class="p_chart"></p>
                         </div>
                         <div class="div_any_child">
-                            <div class="div_any_title"><div type="text" class="demo-input" id="date4" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_20.png">无监督学习分布</div>
+                            <div class="div_any_title"><div type="text" class="demo-input" id="date4" style="display: inline-block;cursor: pointer;margin-right: 16px;"></div><img src="images/title_20.png" class="icon_sheet">无监督学习分布</div>
                             <p id="pieChart3" class="p_chart"></p>
                         </div>
                     </div>
