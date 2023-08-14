@@ -1,9 +1,17 @@
 package bean;
 
+import boot.GetDataToLocal;
+
+import java.io.IOException;
 import java.util.HashMap;
 
 // 获取拿远端数据时，传参对应的表面沉降需要的所有参数
 public class CMapper {
+    public static void main(String[] args) throws IOException {
+        GetDataToLocal getDataToLocal = new GetDataToLocal();
+        getDataToLocal.getSettlementDataToLocal("2023-04-18 00:00:00","2023-04-19 00:00:00","C10-1");
+        getDataToLocal.getSettlementDataToLocal("2023-04-18 00:00:00","2023-04-19 00:00:00","C10-2");
+    }
     // 通过dInstal拿到沉降点所需的传参
     public static HashMap<String, CGetDataParam> dInstalToParam = new HashMap<>();
 

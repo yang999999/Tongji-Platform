@@ -18,7 +18,6 @@ import java.util.Map;
 //        C10-2:485.32 基点：92.48   2816B9040D000055  南区
 // 用于将所有存活传感器的数据导入到本地Excel
 public class GetDataToLocal {
-    static Map<String, Data[]> cache = new HashMap<>();
     // 如果想更新本地的Excel中SW,沉降基点，以及沉降点的数据，那么执行一次main函数即可，默认保存在该类同一级目录下
     public static void main(String[] args) throws IOException {
         String beginTime = "2022-08-03 00:00:00";
@@ -75,7 +74,7 @@ public class GetDataToLocal {
         // 根据传感器安装位置拿到对应表面沉降传感器的监测数据
         Data[] dataArr = getJsonData.getData(beginTime, endTime, dInstal);
         // 找到对应基点的数据
-        Data[] dataArrJ = cache.containsKey(dSenNum) ? cache.get(dSenNum) : getJsonData.getData(beginTime, endTime, dInstalJ, dSenNum);
+        Data[] dataArrJ = getJsonData.getData(beginTime, endTime, dInstalJ, dSenNum);
         // 由于存在缺失值，做差的话以较小值来进行
         Data[] dataArrActual = new Data[Math.min(dataArrJ.length, dataArr.length)];
         for (int i = 0; i < dataArrActual.length; i++) {
@@ -93,10 +92,7 @@ public class GetDataToLocal {
             System.out.println(data);
         }
         // 第一次获取基点需要写入一次Excel，后续则不用写入
-        if(!cache.containsKey(dSenNum)) {
-            writeExcelToLocal(CMapper.dInstalToExcelJName.get(dInstal) + ".xlsx",dataArrJ);
-        }
-        cache.put(dSenNum,dataArrJ);
+        writeExcelToLocal(CMapper.dInstalToExcelJName.get(dInstal) + ".xlsx",dataArrJ);
         writeExcelToLocal(dInstal + ".xlsx",dataArrActual);
     }
 
